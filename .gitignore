@@ -10,6 +10,8 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+/spring-webflux-mongodb/data_db/**
+
 # Package Files #
 *.jar
 *.war

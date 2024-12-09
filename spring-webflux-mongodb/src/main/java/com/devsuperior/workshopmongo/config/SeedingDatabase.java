@@ -30,7 +30,7 @@ public class SeedingDatabase implements CommandLineRunner {
 		deleteUsers.subscribe();
 
 		Mono<Void> deletePosts = postRepository.deleteAll();
-		deleteUsers.subscribe();
+		deletePosts.subscribe();
 
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");

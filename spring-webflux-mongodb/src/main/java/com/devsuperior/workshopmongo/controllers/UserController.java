@@ -47,25 +47,18 @@ public class UserController {
 						.body(newUser));
 	}
 
+	@PutMapping(value = "/{id}")
+	public Mono<ResponseEntity<UserDTO>> update(@PathVariable String id, @RequestBody UserDTO dto) {
+		return service.update(id, dto)
+				.map(ResponseEntity::ok);
+	}
+
 	/**
 	
 	@GetMapping(value = "/{id}/posts")
 	public ResponseEntity<List<PostDTO>> findPosts(@PathVariable String id) {
 		List<PostDTO> list = service.findPosts(id);
 		return ResponseEntity.ok().body(list);
-	}
-
-	@PostMapping
-	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO dto) {
-		dto = service.insert(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.created(uri).body(dto);
-	}
-
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable String id, @RequestBody UserDTO dto) {
-		dto = service.update(id, dto);
-		return ResponseEntity.ok(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}")
